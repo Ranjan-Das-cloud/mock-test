@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router';
 import Navbar from './navbar';
 
 class App extends Component {
@@ -8,7 +9,9 @@ class App extends Component {
       <div>
         
         <Navbar/>
-        <h3>Hello World !!</h3>
+        <Switch>
+            <Route path="/"></Route>
+        </Switch>
       </div>
      );
   }
