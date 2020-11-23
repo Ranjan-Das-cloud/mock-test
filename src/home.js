@@ -12,13 +12,13 @@ class Home extends Component {
                     </div>
                     <div className="row mt-5">
                         <div className="col-4">
-                            <Card name="General Knowledge"/>
+                            <Card name="General Knowledge" id="9"/>
                         </div>
                         <div className="col-4">
-                            <Card name="Calculas"/>
+                            <Card name="Calculas" id="10"/>
                         </div>
                         <div className="col-4">
-                            <Card name="CSRF"/>
+                            <Card name="CSRF" id="11"/>
                         </div>
 
                     </div>
