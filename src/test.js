@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
+import Timer from './timer';
 
 class Test extends Component {
     state = { 
@@ -16,13 +17,16 @@ class Test extends Component {
      }
 
      next(){
+         let question_no = this.state.index;
          this.setState({questions: this.state.questions, index: this.state.index + 1});
-         console.log("You are on questions no. " + this.state.index);
+         question_no += 2;
+         console.log("You are on questions no. " + question_no);
      }
 
      previous(){
+         let question_no = this.state.index;
         this.setState({questions: this.state.questions, index: this.state.index - 1});
-        console.log("You are on questions no. " + this.state.index);
+        console.log("You are on questions no. " + question_no);
     }
 
     grid(index){
@@ -32,6 +36,12 @@ class Test extends Component {
     submit(){
         this.props.history.push('/result');
     }
+
+    /*clock(index){
+        setInterval(function(){
+            console.log(index);
+        },1000);
+    }*/
 
     returnOptions(){
         
@@ -53,7 +63,7 @@ class Test extends Component {
     }
 
     shouldDisplayNext(){
-        if(this.state.index == this.state.questions.length - 1){
+        if(this.state.index === this.state.questions.length - 1){
             return <button onClick={this.submit.bind(this)} className="btn btn-danger btn-lg">Submit</button>
         }
         else
@@ -119,7 +129,7 @@ class Test extends Component {
                             <h4>questions Map</h4>
                             {
                                 this.state.questions.map((item, index) => {
-                                    if(index == this.state.index)
+                                    if(index === this.state.index)
                                     {
                                         return <button onClick={() => this.grid(index)} style={{margin: 10, padding: 20}} className="btn btn-info btn-sm">{index + 1}</button>
                                     }
@@ -131,10 +141,12 @@ class Test extends Component {
                             }
                         </div>
                         <div className="col-6">
-                        <h2 className="mb-3">{this.state.index + 1}.  {this.state.questions[this.state.index]}</h2>
-                            {
-                                this.returnOptions()
-                            }
+                            <div className="fixed-card">
+                                <h2 className="mb-3">{this.state.index + 1}.  {this.state.questions[this.state.index]}</h2>
+                                {
+                                    this.returnOptions()
+                                }
+                            </div>
                             <div className="mt-5">
                                 <span>
                                     {
@@ -149,7 +161,15 @@ class Test extends Component {
                             </div>
                         </div>
                         <div className="col-3">
+                            <div className="card">
+                                <div className="card-body">
+                                    {
+                                        //this.clock(index)
 
+                                        <Timer secs={50}/>
+                                    }
+                                </div>
+                            </div>
                         </div>
 
                     </div>
