@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 
 class Test extends Component {
     state = { 
-        question:[],
+        questions:[],
+        options:[],
+        correct:[],
         index: 0
      }
 
@@ -14,37 +16,76 @@ class Test extends Component {
      }
 
      next(){
-         this.setState({question: this.state.question, index: this.state.index + 1});
-         console.log("You are on Question no. " + this.state.index);
+         this.setState({questions: this.state.questions, index: this.state.index + 1});
+         console.log("You are on questions no. " + this.state.index);
      }
 
      previous(){
-        this.setState({question: this.state.question, index: this.state.index - 1});
-        console.log("You are on Question no. " + this.state.index);
+        this.setState({questions: this.state.questions, index: this.state.index - 1});
+        console.log("You are on questions no. " + this.state.index);
     }
 
-     renderQuestion(index){
-         if(this.state.question.length !== 0){
-             return this.state.question[index].question;
-         }
-     }
+    grid(index){
+        this.setState({questions: this.state.questions, index: index});
+    }
 
-     returnOptions(index){
-         
-        //fetch the options
-        let options = [];
-        if(this.state.question.length !== 0){
-            options = this.state.question[index].incorrect_answers;
-            //console.log(options);
-            options.push(this.state.question[index].correct_answer);
-            console.log(options);
+    suubmit(){
+        
+    }
 
-            //Randomise the array
-            options.sort(() => Math.random() - 0.5);
-            //options = options[Math.floor(Math.random()*options.length)];
-            console.log(options);
+    returnOptions(){
+        
+    //fetch the options
+
+    if(this.state.questions.length !== 0){
+        return this.state.options[this.state.index].map((item) => {
+            return <div>
+                        <h4><input type="radio" name="correct"></input>{item}</h4>
+                    </div>
+        })
+    }
+    }
+
+    shouldDisplayPrev(){
+        if(this.state.index !== 0){
+            return <button onClick={this.previous} className="btn btn-info">Prev</button>
         }
-        return options;
+    }
+
+    shouldDisplayNext(){
+        if(this.state.index == this.state.questions.length - 1){
+            return <button onClick={this.submit} className="btn btn-danger btn-lg">Submit</button>
+        }
+        else
+        {
+            return <button onClick={this.next} className="btn btn-info">Next</button>
+        }
+    }
+
+     fillState(response){
+
+        let questions = [];
+        let options = [];
+        let correct = [];
+
+        response.data.results.map((item) => {
+            questions.push(item.question)
+            correct.push(item.correct_answer);
+            let temp = [];
+
+            item.incorrect_answers.map((option) => {
+                temp.push(option);
+            });
+
+            temp.push(item.correct_answer);
+
+            options.push(temp);
+        });
+        //console.log(questions);
+        //console.log(correct);
+        //console.log(options);
+
+        this.setState({questions: questions, options: options, correct: correct, index: 0});
      }
 
     componentDidMount(){
@@ -56,41 +97,54 @@ class Test extends Component {
         .get('https://opentdb.com/api.php?amount=10&category='+ category_id +'&difficulty=easy')
         .then((response) => {
             //console.log(response);
-            this.setState({question: response.data.results, index: 0});
-            console.log(this.state.question);
+            //extract questions
+            this.fillState(response);
+
+            //fetch options
+
+
+            //this.setState({questions: response.data.results, index: 0});
+            console.log(this.state.questions);
         })
         .catch((error) => {
             console.log(error);
         })
     }
     render() { 
-        let options = this.returnOptions(this.state.index);
         return ( 
             <div>
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-3">
+                            <h4>questions Map</h4>
                             {
-                                this.state.question.map((item, index) => {
-                                    return <button className="btn btn-info btn-sm">{index}</button>
+                                this.state.questions.map((item, index) => {
+                                    if(index == this.state.index)
+                                    {
+                                        return <button onClick={() => this.grid(index)} style={{margin: 10, padding: 20}} className="btn btn-info btn-sm">{index + 1}</button>
+                                    }
+                                    else
+                                    {
+                                        return <button onClick={() => this.grid(index)} style={{margin: 10, padding: 20}} className="btn btn-secondary btn-sm">{index + 1}</button>
+                                    }
                                 })
                             }
                         </div>
                         <div className="col-6">
-                            <h2 className="mb-3">{this.renderQuestion(this.state.index)}</h2>
+                        <h2 className="mb-3">{this.state.index + 1}.  {this.state.questions[this.state.index]}</h2>
                             {
-                                options.map((item) => {
-                                    return <div>
-                                                <h4><input type="radio" name="correct"></input>{item}</h4>
-                                            </div>
-                                })
+                                this.returnOptions()
                             }
                             <div className="mt-5">
                                 <span>
-                                    <button onClick={this.previous} className="btn btn-info">Prev</button>
+                                    {
+                                        this.shouldDisplayPrev()
+                                    }
                                 </span>
                                 <span className="float-right">
-                                    <button onClick={this.next} className="btn btn-info">Next</button>
+                                    {
+                                        this.shouldDisplayNext()
+                                    }
                                 </span>
                             </div>
                         </div>
