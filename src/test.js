@@ -29,8 +29,8 @@ class Test extends Component {
         this.setState({questions: this.state.questions, index: index});
     }
 
-    suubmit(){
-        
+    submit(){
+        this.props.history.push('/result');
     }
 
     returnOptions(){
@@ -54,7 +54,7 @@ class Test extends Component {
 
     shouldDisplayNext(){
         if(this.state.index == this.state.questions.length - 1){
-            return <button onClick={this.submit} className="btn btn-danger btn-lg">Submit</button>
+            return <button onClick={this.submit.bind(this)} className="btn btn-danger btn-lg">Submit</button>
         }
         else
         {
