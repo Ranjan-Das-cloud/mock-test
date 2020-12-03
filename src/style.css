@@ -1,3 +1,7 @@
 .body{
     color: azure;
 }
+
+.fixed-card{
+    min-height: 500px;
+}
