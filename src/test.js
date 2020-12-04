@@ -10,21 +10,21 @@ class Test extends Component {
         index: 0
      }
 
-     constructor(props){
-         super(props);
-         this.next = this.next.bind(this);
-         this.previous = this.previous.bind(this);
-     }
+    constructor(props){
+        super(props);
+        this.next = this.next.bind(this);
+        this.previous = this.previous.bind(this);
+    }
 
-     next(){
-         let question_no = this.state.index;
-         this.setState({questions: this.state.questions, index: this.state.index + 1});
-         question_no += 2;
-         console.log("You are on questions no. " + question_no);
-     }
+    next(){
+        let question_no = this.state.index;
+        this.setState({questions: this.state.questions, index: this.state.index + 1});
+        question_no += 2;
+        console.log("You are on questions no. " + question_no);
+    }
 
-     previous(){
-         let question_no = this.state.index;
+    previous(){
+        let question_no = this.state.index;
         this.setState({questions: this.state.questions, index: this.state.index - 1});
         console.log("You are on questions no. " + question_no);
     }
@@ -42,6 +42,10 @@ class Test extends Component {
             console.log(index);
         },1000);
     }*/
+
+    onTimeComplete(){
+        this.props.history.push('/result');
+    }
 
     returnOptions(){
         
@@ -72,31 +76,31 @@ class Test extends Component {
         }
     }
 
-     fillState(response){
+    fillState(response){
 
-        let questions = [];
-        let options = [];
-        let correct = [];
+    let questions = [];
+    let options = [];
+    let correct = [];
 
-        response.data.results.map((item) => {
-            questions.push(item.question)
-            correct.push(item.correct_answer);
-            let temp = [];
+    response.data.results.map((item) => {
+        questions.push(item.question)
+        correct.push(item.correct_answer);
+        let temp = [];
 
-            item.incorrect_answers.map((option) => {
-                temp.push(option);
-            });
-
-            temp.push(item.correct_answer);
-
-            options.push(temp);
+        item.incorrect_answers.map((option) => {
+            temp.push(option);
         });
-        //console.log(questions);
-        //console.log(correct);
-        //console.log(options);
 
-        this.setState({questions: questions, options: options, correct: correct, index: 0});
-     }
+        temp.push(item.correct_answer);
+
+        options.push(temp);
+    });
+    //console.log(questions);
+    //console.log(correct);
+    //console.log(options);
+
+    this.setState({questions: questions, options: options, correct: correct, index: 0});
+    }
 
     componentDidMount(){
         let category_id = this.props.match.params.id;
@@ -166,7 +170,7 @@ class Test extends Component {
                                     {
                                         //this.clock(index)
 
-                                        <Timer secs={50}/>
+                                        <Timer onTimeComplete={this.onTimeComplete.bind(this)} secs={50}/>
                                     }
                                 </div>
                             </div>
