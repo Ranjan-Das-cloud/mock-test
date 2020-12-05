@@ -37,8 +37,11 @@ class Test extends Component {
 
     submit(){
         let marks = this.evaluate();
-        alert(marks);
-        this.props.history.push('/result');
+        alert("Yay!!! You obtained " + marks + " marks");
+        this.props.history.push({
+            pathname: '/result',
+            state: {marks: marks}
+        });
     }
 
     /*clock(index){
@@ -66,7 +69,10 @@ class Test extends Component {
 
     onTimeComplete(){
         let marks = this.evaluate();
-        this.props.history.push('/result');
+        this.props.history.push({
+            pathname: '/result',
+            state: {marks: marks}
+        });
     }
 
     returnOptions(){
