@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
+import Radio from './radio';
 import Timer from './timer';
 
 class Test extends Component {
@@ -7,6 +8,7 @@ class Test extends Component {
         questions:[],
         options:[],
         correct:[],
+        answers: [],
         index: 0
      }
 
@@ -54,7 +56,7 @@ class Test extends Component {
         if(this.state.questions.length !== 0){
             return this.state.options[this.state.index].map((item) => {
                 return <div>
-                            <h4><input type="radio" name="correct"></input>{item}</h4>
+                            <h4><Radio checked={this.state.answers[this.state.index] === item} name={item}/></h4>
                         </div>
             })
         }
@@ -81,9 +83,11 @@ class Test extends Component {
     let questions = [];
     let options = [];
     let correct = [];
+    let answers = [];
 
     response.data.results.map((item) => {
-        questions.push(item.question)
+        questions.push(item.question);
+        answers.push("");
         correct.push(item.correct_answer);
         let temp = [];
 
