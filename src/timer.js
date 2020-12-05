@@ -18,7 +18,7 @@ class Timer extends Component {
     }
     render() { 
         return ( 
-            <div>{this.state.counter} secs</div>
+            <div>{Math.floor(this.state.counter/60)} mins {this.state.counter % 60} secs</div>
          );
     }
 }
