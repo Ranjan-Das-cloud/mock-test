@@ -36,6 +36,8 @@ class Test extends Component {
     }
 
     submit(){
+        let marks = this.evaluate();
+        alert(marks);
         this.props.history.push('/result');
     }
 
@@ -45,7 +47,25 @@ class Test extends Component {
         },1000);
     }*/
 
+    evaluate(){
+        let i;
+        let marks = 0;
+        for(i=0; i <= this.state.answers.length -1; i++){
+            if(this.state.answers[i] !== ""){
+                if(this.state.correct[i] === this.state.answers[i]){
+                    marks += 4;
+                }
+                else{
+                    marks -= 1;
+                }
+            }
+        }
+
+        return marks;
+    }
+
     onTimeComplete(){
+        let marks = this.evaluate();
         this.props.history.push('/result');
     }
 
@@ -56,10 +76,29 @@ class Test extends Component {
         if(this.state.questions.length !== 0){
             return this.state.options[this.state.index].map((item) => {
                 return <div>
-                            <h4><Radio checked={this.state.answers[this.state.index] === item} name={item}/></h4>
+                            <h4><Radio checked={this.state.answers[this.state.index] === item} name={item} index={this.state.index} handleClick={this.handleClick.bind(this)}/></h4>
                         </div>
             })
         }
+    }
+
+    handleClick(questionIndex,name){
+        //1. turn the radio button on
+
+        //2. update the answer array
+
+        let updatedAnswers = this.state.answers.map(function(item,index) {
+            if(index === questionIndex){
+                return name;
+            }
+            else{
+                return item;
+            }
+        })
+
+        console.log(updatedAnswers);
+
+        this.setState({answers: updatedAnswers});
     }
 
     shouldDisplayPrev(){
@@ -86,7 +125,7 @@ class Test extends Component {
     let answers = [];
 
     response.data.results.map((item) => {
-        questions.push(item.question);
+        questions.push(item.question)
         answers.push("");
         correct.push(item.correct_answer);
         let temp = [];
@@ -103,7 +142,7 @@ class Test extends Component {
     //console.log(correct);
     //console.log(options);
 
-    this.setState({questions: questions, options: options, correct: correct, index: 0});
+    this.setState({questions: questions, options: options, correct: correct, answers: answers, index: 0});
     }
 
     componentDidMount(){
