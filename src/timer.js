@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Timer extends Component {
     state = { 
-        counter: this.props.secs
+        counter: this.props.secs - 1
      }
 
     componentDidMount(){
