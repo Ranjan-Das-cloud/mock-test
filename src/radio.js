@@ -5,7 +5,7 @@ class Radio extends Component {
     render() { 
         return ( 
             <div>
-                <input checked={this.props.checked} type="radio" name="x"></input>{this.props.name}
+                <input onChange={() => this.props.handleClick(this.props.index,this.props.name)} checked={this.props.checked} type="radio" name="correct"></input>{this.props.name}
             </div>
          );
     }
