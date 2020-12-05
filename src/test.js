@@ -49,15 +49,15 @@ class Test extends Component {
 
     returnOptions(){
         
-    //fetch the options
+        //fetch the options
 
-    if(this.state.questions.length !== 0){
-        return this.state.options[this.state.index].map((item) => {
-            return <div>
-                        <h4><input type="radio" name="correct"></input>{item}</h4>
-                    </div>
-        })
-    }
+        if(this.state.questions.length !== 0){
+            return this.state.options[this.state.index].map((item) => {
+                return <div>
+                            <h4><input type="radio" name="correct"></input>{item}</h4>
+                        </div>
+            })
+        }
     }
 
     shouldDisplayPrev(){
@@ -170,7 +170,7 @@ class Test extends Component {
                                     {
                                         //this.clock(index)
 
-                                        <Timer onTimeComplete={this.onTimeComplete.bind(this)} secs={50}/>
+                                        <Timer onTimeComplete={this.onTimeComplete.bind(this)} secs={150}/>
                                     }
                                 </div>
                             </div>
