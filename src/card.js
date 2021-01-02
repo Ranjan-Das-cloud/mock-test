@@ -12,9 +12,15 @@ class Card extends Component {
                         <h6 className="card-subtitle mb-2 text-muted">10 mins</h6>
                         <p className="card-text">Some quick questions are given here. Are you ready to solve ??? Click on Take Test !!</p>
                         <Link to={'/test/' + this.props.id} className="card-link btn btn-sm btn-info">Take Test</Link>
-                        <a href="#" className="card-link btn btn-sm btn-primary">Bookmark It</a>
+                        <a className="card-link btn btn-sm btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Read About</a>
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            </div>
+                        </div>
                     </div>
-                    </div>
+                </div>
             </div>
          );
     }
