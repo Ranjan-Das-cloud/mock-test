@@ -10,7 +10,7 @@ class Submit extends Component {
                         <div className="col-6 offset-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <h4>You scored {this.props.location.state.marks} marks</h4>
+                                    <h3 className="text-md-center">Yay !! You scored {this.props.location.state.marks} marks</h3>
                                 </div>
                             </div>
                         </div>
