@@ -219,7 +219,7 @@ class Test extends Component {
                                     {
                                         //this.clock(index)
 
-                                        <Timer onTimeComplete={this.onTimeComplete.bind(this)} secs={150}/>
+                                        <Timer onTimeComplete={this.onTimeComplete.bind(this)} secs={600}/>
                                     }
                                 </div>
                             </div>
