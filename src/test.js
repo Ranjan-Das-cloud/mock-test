@@ -37,7 +37,9 @@ class Test extends Component {
 
     submit(){
         let marks = this.evaluate();
-        alert("Yay!!! You obtained " + marks + " marks");
+        //alert("Yay!!! You obtained " + marks + " marks");
+        alert("Thanks, for taking the test !!!");
+        alert("Bravo !!! You'll be redirected to the Result Page .......");
         this.props.history.push({
             pathname: '/result',
             state: {marks: marks}
