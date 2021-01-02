@@ -5,6 +5,11 @@
 .fixed-card{
     min-height: 500px;
 }
+.mid-auto{
+    margin: auto;
+    padding: auto;
+    margin-left: 42.5%;
+}
 
 .image{
     width: 100%;
