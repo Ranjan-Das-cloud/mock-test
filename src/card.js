@@ -16,7 +16,7 @@ class Card extends Component {
 
                         <div class="collapse" id="collapseExample">
                             <div class="">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                This 20 mins test contains +4 marks for each correct entry and -1 mark for each incorrect answers.
                             </div>
                         </div>
                     </div>
