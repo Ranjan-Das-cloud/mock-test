@@ -46,7 +46,7 @@ class Home extends Component {
                         </div>
 
                     </div>
-                    <div className="row mt-5">
+                    <div className="row offset-3 mt-5">
                         <nav aria-label="...">
                             <ul class="pagination mid-auto">
                                 <li class="page-item disabled">
