@@ -43,7 +43,7 @@ class Home extends Component {
                         </div>
 
                         <div className="col-4 mb-3">
-                            <Card name="Entertainment: Film" id="11"/>
+                            <Card name="Science and Computers" id="18"/>
                         </div>
 
                     </div>
