@@ -57,7 +57,7 @@ class Home extends Component {
                                 <li class="page-item" aria-current="page">
                                 <Link class="page-link" to="/home_2">2</Link>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><Link class="page-link" to="/home_3">3</Link></li>
                                 <li class="page-item">
                                 <a class="page-link" href="#">Next</a>
                                 </li>
