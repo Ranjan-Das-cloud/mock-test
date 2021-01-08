@@ -3,7 +3,8 @@
 }
 
 .fixed-card{
-    min-height: 500px;
+    min-height: 200px;
+    max-height: 300px;
 }
 .mid-auto{
     margin: auto;
