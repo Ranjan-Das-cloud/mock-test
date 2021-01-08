@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Card from './card';
 
 class Home extends Component {
@@ -52,9 +53,9 @@ class Home extends Component {
                                 <li class="page-item disabled">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
+                                <li class="page-item active"><Link class="page-link" to="/home">1</Link></li>
+                                <li class="page-item" aria-current="page">
+                                <Link class="page-link" to="/home_2">2</Link>
                                 </li>
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item">
