@@ -6,7 +6,7 @@ class Instructions extends Component {
     render() { 
         return ( 
             <div>
-                <h2 className="mb-3 heading-1 text-md-center">Let's the test begin !!</h2>
+                <h2 className="mb-3 heading-1 text-md-center">Let's begin the test !!</h2>
 
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
