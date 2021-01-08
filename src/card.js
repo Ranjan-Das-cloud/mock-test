@@ -6,7 +6,7 @@ class Card extends Component {
     render() { 
         return ( 
             <div>
-                <div className="card">
+                <div className="card fixed-card">
                     <div className="card-body">
                         <h5 className="card-title">{this.props.name}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">10 mins</h6>
