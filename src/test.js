@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { Component } from 'react';
 import Radio from './radio';
 import Timer from './timer';
+import Loader from './Loader';
 
 class Test extends Component {
     state = { 
@@ -84,7 +85,7 @@ class Test extends Component {
         if(this.state.questions.length !== 0){
             return this.state.options[this.state.index].map((item) => {
                 return <div>
-                            <h4><Radio checked={this.state.answers[this.state.index] === item} name={item} index={this.state.index} handleClick={this.handleClick.bind(this)}/></h4>
+                            <h4><Radio checked={this.state.answers[this.state.index] === item} name={item} index={this.state.index} handleClick={this.handleClick.bind(this)} class="options"/></h4>
                         </div>
             })
         }
@@ -131,22 +132,42 @@ class Test extends Component {
     let options = [];
     let correct = [];
     let answers = [];
+    let question;
+    let correct_answer;
+
+    const htmlEntities = {
+        "&amp;": "&",
+        "&lt;": "<",
+        "&gt;": ">",
+        "&quot;": '"',
+        "&apos;": "'",
+        "&#039;": "'",
+        "&deg;": "°"
+      };
 
     response.data.results.map((item) => {
-        questions.push(item.question)
+        // question = item.question.replace(/&#039;/g, "'").replace(/&amp;/g, "&");
+        question = item.question.replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&deg;/g, "°").replace(/&quot;/g, '"').replace(/&gt;/g, ">")
+                        .replace(/&rsquo;/g, "'").replace(/&shy;/g, "-").replace(/&#173;/g, "-").replace(/&oacute/g, "Ó");
+        console.log(question)
+        questions.push(question)
         answers.push("");
-        correct.push(item.correct_answer);
+        correct_answer = item.correct_answer.replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&deg;/g, "°").replace(/&quot;/g, '"').replace(/&gt;/g, ">").replace(/&lrm;/g, "").replace(/&Delta;/g, "δ")
+                        .replace(/&shy;/g, "-").replace(/&#173;/g, "-").replace(/&rsquo;/g, "'").replace(/&oacute/g, "Ó");
+        correct.push(correct_answer);
         let temp = [];
 
         item.incorrect_answers.map((option) => {
+            option = option.replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&deg;/g, "°").replace(/&quot;/g, '"').replace(/&gt;/g, ">").replace(/&lrm;/g, "").replace(/&Delta;/g, "δ")
+                        .replace(/&rsquo;/g, "'").replace(/&shy;/g, "-").replace(/&#173;/g, "-").replace(/&oacute/g, "Ó");
             temp.push(option);
         });
 
-        temp.push(item.correct_answer);
+        temp.push(correct_answer);
 
         options.push(temp);
     });
-    //console.log(questions);
+    // console.log(questions);
     //console.log(correct);
     //console.log(options);
 
@@ -169,7 +190,7 @@ class Test extends Component {
 
 
             //this.setState({questions: response.data.results, index: 0});
-            console.log(this.state.questions);
+            // console.log(this.state.questions);
         })
         .catch((error) => {
             console.log(error);
@@ -177,11 +198,12 @@ class Test extends Component {
     }
     render() { 
         return ( 
-            <div>
+            <>
                 <div className="container mt-5">
+                    {(this.state.questions.length < 1) ? (<Loader />) : (
                     <div className="row">
                         <div className="col-3">
-                            <h4>questions Map</h4>
+                            <h4>Questions Map</h4>
                             {
                                 this.state.questions.map((item, index) => {
                                     if(index === this.state.index)
@@ -196,14 +218,16 @@ class Test extends Component {
                             }
                         </div>
                         <div className="col-6">
-                            <div className="fixed-card">
-                                <h2 className="mb-3">{this.state.index + 1}.  {this.state.questions[this.state.index]}</h2>
+                            <div class="row">
+                            <div className="question-card">
+                                {this.state.questions.length > 0 ? (<h3 className="mb-3">{this.state.index + 1}.  {this.state.questions[this.state.index]}</h3>) : (<h3 className="mb-3"></h3>)}
                                 {
                                     this.returnOptions()
                                 }
                             </div>
-                            <div className="mt-5">
-                                <span>
+                            </div>
+                            <div className="row mt-5">
+                                <span style={{marginRight: '20vw'}}>
                                     {
                                         this.shouldDisplayPrev()
                                     }
@@ -216,20 +240,21 @@ class Test extends Component {
                             </div>
                         </div>
                         <div className="col-3">
-                            <div className="card">
-                                <div className="card-body">
-                                    {
-                                        //this.clock(index)
+                            {
+                                //this.clock(index)
 
-                                        <Timer onTimeComplete={this.onTimeComplete.bind(this)} secs={600}/>
-                                    }
-                                </div>
-                            </div>
+                                (this.state.questions.length) > 0 ? 
+                                    (
+                                        <Timer onTimeComplete={this.onTimeComplete.bind(this)} secs={601}/>
+                                    ) : (<span></span>)
+                            }
                         </div>
 
                     </div>
+                    )
+                }
                 </div>
-            </div>
+            </>
          );
     }
 }

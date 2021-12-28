@@ -12,42 +12,42 @@ class Home extends Component {
                         <h3><i><b>Available Tests</b></i></h3>
                     </div>
                     <div className="row mt-5">
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="General Knowledge" id="9"/>
                         </div>
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Science: Mathematics" id="19"/>
                         </div>
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Celebrities" id="26"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Sports" id="21"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Mythology" id="20"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Geography" id="22"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="History" id="23"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Science and Nature" id="17"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Science and Computers" id="18"/>
                         </div>
 
                     </div>
-                    <div className="row offset-3 mt-5">
+                    <div className="offset-360 mb-5">
                         <nav aria-label="...">
                             <ul class="pagination mid-auto">
                                 <li class="page-item disabled">

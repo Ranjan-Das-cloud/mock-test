@@ -18,7 +18,21 @@ class Timer extends Component {
     }
     render() { 
         return ( 
-            <div>{Math.floor(this.state.counter/60)} mins {this.state.counter % 60} secs</div>
+            <div class="timer">
+                {Math.floor(this.state.counter/60) > 9 ? (
+                    <span class="timer__part timer__part--minutes">{Math.floor(this.state.counter/60)}</span>
+                    ) : (
+                        <span class="timer__part timer__part--minutes">0{Math.floor(this.state.counter/60)}</span>
+                    )
+                }
+                <span class="timer__part">:</span>
+                {this.state.counter % 60 > 9 ? (
+                <span class="timer__part timer__part--seconds">{this.state.counter % 60}</span>
+                    ) : (
+                        <span class="timer__part timer__part--seconds">0{this.state.counter % 60}</span>
+                    )
+                }
+            </div>
          );
     }
 }

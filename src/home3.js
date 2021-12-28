@@ -12,46 +12,46 @@ class Homethird extends Component {
                         <h3><i><b>Available Tests (on Other Areas)</b></i></h3>
                     </div>
                     <div className="row mt-5">
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Entertainment: Comics" id="29"/>
                         </div>
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Science: Gadgets" id="30"/>
                         </div>
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Vehicles" id="28"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Art" id="25"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Politics" id="24"/>
                         </div>
 
-                        <div className="col-4 mb-3">
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
                             <Card name="Animals" id="27"/>
                         </div>
 
-                        <div className="col-4 mb-3">
-                            <Card name="Not Defined" id="#goback_01"/>
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
+                            <Card name="BioLogy" id="#goback_01" details="Will be available soon!"/>
                         </div>
 
-                        <div className="col-4 mb-3">
-                            <Card name="Not defined" id="#goback_02"/>
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
+                            <Card name="Zoology" id="#goback_02" details="Will be available soon!"/>
                         </div>
 
-                        <div className="col-4 mb-3">
-                            <Card name="Not Defined" id="#goback_03"/>
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">
+                            <Card name="Ergonomy" id="#goback_03" details="Will be available soon!"/>
                         </div>
 
                     </div>
-                    <div className="row offset-3 mt-5">
+                    <div className="offset-360 mb-5">
                         <nav aria-label="...">
                             <ul class="pagination mid-auto">
                                 <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                <Link class="page-link" to="#" tabindex="-1" aria-disabled="true">Previous</Link>
                                 </li>
                                 <li class="page-item"><Link class="page-link" to="/home">1</Link></li>
                                 <li class="page-item" aria-current="page">
@@ -59,7 +59,7 @@ class Homethird extends Component {
                                 </li>
                                 <li class="page-item active"><Link class="page-link" to="/home_3">3</Link></li>
                                 <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
+                                <Link class="page-link" to="#">Next</Link>
                                 </li>
                             </ul>
                         </nav>
